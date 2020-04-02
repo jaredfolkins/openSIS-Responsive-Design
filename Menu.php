@@ -25,11 +25,9 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #***************************************************************************************
-if(!$_SESSION['STAFF_ID'] && !$_SESSION['STUDENT_ID'] && (strpos($_SERVER['PHP_SELF'],'index.php'))===false)
-	{
-		header('Location: index.php');
-		exit;
-	}
+include("functions/Authorization.php");
+CanAccessPage();
+
 if(!$_openSIS['Menu'])
 {
 	foreach($openSISModules as $module=>$include)

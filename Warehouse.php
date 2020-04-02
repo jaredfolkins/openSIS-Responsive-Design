@@ -26,6 +26,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #***************************************************************************************
+include("functions/Authorization.php");
 if (WAREHOUSE_PHP == 0) {
     define("WAREHOUSE_PHP", 1);
     $staticpath = dirname(__FILE__) . '/';
@@ -55,10 +56,7 @@ if (WAREHOUSE_PHP == 0) {
     // Start Session.
     session_start();
 
-    if (!$_SESSION['STAFF_ID'] && !$_SESSION['STUDENT_ID'] && strpos($_SERVER['PHP_SELF'], 'index.php') === false) {
-        header('Location: index.php');
-        exit;
-    }
+    CanAccessPage();
 
     function Warehouse($mode, $extra = '') {
         global $__SHOW_FOOTER, $_openSIS;
